@@ -1,6 +1,15 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * 
+ * Pacman Game - PacmanGame.java
+ * CIS*3760 Assignment Two
+ * University of Guelph
+ * 
+ * Author: Danielle Fudger 0621496
+ * Contact: dfudger@uoguelph.ca
+ * Date: Januray 26, 2013
+ * 
+ * This is a java based pacman style game. For more information, please see the README. 
+ * 
  */
 package pacmangame;
 
@@ -8,12 +17,26 @@ package pacmangame;
  *
  * @author dfudger
  */
-public class PacmanGame {
-
+public class PacmanGame 
+{
+    
+    private void createGame(){}
+    
+    private void startGame(){}
+    
+    private void saveGame(){}
+    
+    private void loadGame(){}
+    
+    
     /**
+     * The main function is responsible for beggning the pacman game. It creates all of the necessary objects and runs the program
+     * until the user wins, loses, or quits.
+     * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        System.out.println("Everything is nice and shiny Captain!");
     }
 }
