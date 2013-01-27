@@ -6,6 +6,7 @@ package pacmangame;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.MatteBorder;
 
 
 /**
@@ -22,19 +23,31 @@ public class Window extends JFrame implements Actionlistener
     public Window()
     {
         //Box to hold GUI
-        JPanel gamepanel = new JPanel();
+        //JPanel gamepanel = new JPanel();
         JFrame box = new JFrame();
+        FlowLayout layout = new FlowLayout();
         JLabel floorLabel = new JLabel();
-        box.setSize(900, 900);
+        box.setSize(850, 650);
+        //box.setBounds(850, 850, 650, 650); // Size
+        box.setResizable(false);
         box.setDefaultCloseOperation(EXIT_ON_CLOSE); //Use X to close
+        //box.setPreferredSize(new Dimension(650, 850));
+        //box.setLayout(new GridLayout(6, 8));
+        layout.setHgap(0);  
+        layout.setVgap(0);  
         
+        Container content = box.getContentPane(); 
+        content.setLayout(layout);
+        //box.setLayout(new FlowLayout()); //Set the type of layout for window
         
-        box.setLayout(new FlowLayout()); //Set the type of layout for window
-
-        gamepanel.setLayout(new GridLayout(6, 8));
+        //gamepanel.setLayout(new GridLayout(6, 8));
         
-        Dimension d1 = new Dimension(900, 900);
-        gamepanel.setPreferredSize(d1);
+        //box.setBorder(new MatteBorder(0, 0, 0, 0, Color.black));
+        //gamepanel.setHgap(0);
+        
+        //matteborder gamepanelBroder = new matteborder(0, 0, 0, 0, Color.black);
+        //Dimension d1 = new Dimension(850, 650);
+        //gamepanel.setPreferredSize(d1);
         
         for(int i = 0; i < 6; i++)
         {
@@ -54,12 +67,14 @@ public class Window extends JFrame implements Actionlistener
                     System.out.println("map[" + i + "][" + j + "] = " + Map.floorFull);
                 }
                 
-                box.add(mapView[i][j]);
+                content.add(mapView[i][j]);
+                //layout.add(mapView[i][j]);
+                //gamepanel.add(mapView[i][j]);
             }
         }
         
         
-        box.add(gamepanel);
+        //box.add(gamepanel);
         
         box.setVisible(true);
     }
