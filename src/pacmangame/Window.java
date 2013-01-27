@@ -49,6 +49,16 @@ public class Window extends JFrame implements Actionlistener
         
     }
     
+    private void addBarriers(Container content)
+    {
+        mapView[4][5].setIcon(new ImageIcon(Map.wall)); 
+    }
+            
+    private void addHero(Container content)
+    {
+        mapView[1][1].setIcon(new ImageIcon(Map.hero)); 
+    }
+    
     public Window()
     {
         //Box to hold GUI
@@ -80,7 +90,9 @@ public class Window extends JFrame implements Actionlistener
         
         //Add Walls
         addWalls(content);
-        
+        addBarriers(content);
+        addHero(content);
+       
         
         //box.add(gamepanel);
         
