@@ -20,7 +20,14 @@ package pacmangame;
 public class PacmanGame 
 {
     
-    private void createGame(){}
+    public PacmanGame() {}
+    
+    private void createGame()
+    {
+        Map layout = new Map();
+        
+        //Hero dino = new Hero();
+    }
     
     private void startGame(){}
     
@@ -30,12 +37,16 @@ public class PacmanGame
     
     
     /**
-     * The main function is responsible for beggning the pacman game. It creates all of the necessary objects and runs the program
+     * The main function is responsible for beginning the pacman game. It creates all of the necessary objects and runs the program
      * until the user wins, loses, or quits.
      * 
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        Map newMap = new Map();
+        Window gui = new Window();
+        gui.setVisible(true);
         
         System.out.println("Everything is nice and shiny Captain!");
     }

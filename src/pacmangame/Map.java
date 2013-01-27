@@ -19,7 +19,23 @@ package pacmangame;
  */
 public class Map 
 {
-    public Map() {}
+    public String [][] layout = new String[20][20];
+    public static String wall = "images/wall.jpg";
+    public static String floorFull = "images/floorFull.jpg";
+    public static String floorEmpty = "images/floorEmpty.jpg";
+    public static String hero = "images/hero.jpg";
+    public static String badGuy = "images/badGuy.jpg";
+    
+    public Map() 
+    {
+        /*for(int i = 0; i < 20; i++)
+        {
+            for(int j = 0; i < 20; j++)
+            {
+                layout[i][j] = floorFull;
+            }
+        }*/
+    }
     
     private void getImage() {}
     

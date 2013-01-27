@@ -19,6 +19,8 @@ package pacmangame;
  */
 public class Character 
 {
+    public Character() {}
+    
     private void setImage() {}
     
     private void getLocation() {}
