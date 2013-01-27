@@ -26,7 +26,12 @@ public class PacmanGame
     {
         Map layout = new Map();
         
-        //Hero dino = new Hero();
+        Hero dino = new Hero();
+        
+        
+        Window gui = new Window();
+        gui.setVisible(true);
+        
     }
     
     private void startGame(){}
@@ -44,7 +49,6 @@ public class PacmanGame
      */
     public static void main(String[] args) {
         
-        Map newMap = new Map();
         Window gui = new Window();
         gui.setVisible(true);
         

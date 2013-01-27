@@ -19,7 +19,12 @@ package pacmangame;
  */
 public class Hero extends Character 
 {
-    public Hero() {}
+    public Hero() 
+    {
+        super();
+        setImage("/images/heroLeft.jpg");
+        setLocation(1, 1);
+    }
     
     private void changePosition() {}
     

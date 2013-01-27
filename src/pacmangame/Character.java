@@ -19,13 +19,32 @@ package pacmangame;
  */
 public class Character 
 {
-    public Character() {}
+    public String actorImage = "";
+    public int actorHposition = 1;
+    public int actorVposition = 1;
     
-    private void setImage() {}
+    public Character() {} //None, will pull from subclasses
+
+    public void setImage(String s) 
+    {
+        this.actorImage = s;
+    }
     
-    private void getLocation() {}
+    public int getHLocation() 
+    {
+        return this.actorHposition;
+    }
     
-    private void setLocation() {}
+    public int getVLocation() 
+    {
+        return this.actorVposition;
+    }
+    
+    public void setLocation(int h, int v) 
+    {
+        this.actorHposition = h;
+        this.actorVposition = v;
+    }
     
     private void die() {}
     

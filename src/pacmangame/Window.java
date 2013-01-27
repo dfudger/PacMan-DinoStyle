@@ -5,6 +5,10 @@
 package pacmangame;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 
@@ -13,7 +17,7 @@ import javax.swing.border.MatteBorder;
  *
  * @author dfudger
  */
-public class Window extends JFrame implements Actionlistener
+public class Window extends JFrame implements KeyListener
 {
     
     
@@ -59,6 +63,13 @@ public class Window extends JFrame implements Actionlistener
         mapView[1][1].setIcon(new ImageIcon(Map.hero)); 
     }
     
+    private void createMap(Container content)
+    {
+        addWalls(content);
+        addBarriers(content);
+        addHero(content);
+    }
+    
     public Window()
     {
         //Box to hold GUI
@@ -77,6 +88,7 @@ public class Window extends JFrame implements Actionlistener
         
         Container content = box.getContentPane(); 
         content.setLayout(layout);
+        //content.addKeyListener(new );
         //box.setLayout(new FlowLayout()); //Set the type of layout for window
         
         //gamepanel.setLayout(new GridLayout(6, 8));
@@ -89,9 +101,58 @@ public class Window extends JFrame implements Actionlistener
         //gamepanel.setPreferredSize(d1);
         
         //Add Walls
-        addWalls(content);
-        addBarriers(content);
-        addHero(content);
+        createMap(content);
+        
+        
+        box.addKeyListener(this);
+        //{
+              //When any key is pressed and released then the 
+              //keyPressed and keyReleased methods are called respectively.
+              //The keyTyped method is called when a valid character is typed.
+              //The getKeyChar returns the character for the key used. If the key
+              //is a modifier key (e.g., SHIFT, CTRL) or action key (e.g., DELETE, ENTER)
+              //then the character will be a undefined symbol.
+             // @Override 
+             // public void keyPressed(KeyEvent e)
+             /* {
+                  System.out.println("Key Pressed: " + e.getKeyChar() + "\n");
+              }
+              @Override
+              public void keyReleased(KeyEvent e)
+              {
+                  System.out.println("Key Released: " + e.getKeyChar() + "\n");
+              }*/
+              
+              //@Override
+              /*public void keyTyped(KeyEvent e)
+              {
+                  //The getKeyModifiers method is a handy
+                  //way to get a String representing the
+                  //modifier key.
+                  System.out.println("Key Typed: " + e.getKeyChar() + " " + KeyEvent.getKeyModifiersText(e.getModifiers()) + "\n");
+              } */
+            /*  
+              public void keyTyped(KeyEvent event) 
+              {
+                if (event.getKeyCode() == KeyEvent.VK_UP) 
+                {
+                    System.out.println("UP!\n\n");
+                }
+                if (event.getKeyCode() == KeyEvent.VK_DOWN) 
+                {
+                    System.out.println("DOWN!\n\n");
+                }
+                if (event.getKeyCode() == KeyEvent.VK_LEFT) 
+                {
+                    System.out.println("LEFT!\n\n");
+                }
+                if (event.getKeyCode() == KeyEvent.VK_RIGHT) 
+                {
+                    System.out.println("RIGHT!\n\n");
+                }
+              }*/
+        //});
+        
        
         
         //box.add(gamepanel);
@@ -99,4 +160,53 @@ public class Window extends JFrame implements Actionlistener
         box.setVisible(true);
     }
     
+    //@Override
+    //public void keyTyped(KeyEvent event) {
+        
+    //}
+
+    @Override
+    public void keyPressed(KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.VK_UP) 
+                {
+                    System.out.println("UP!\n\n");
+                }
+                if (event.getKeyCode() == KeyEvent.VK_DOWN) 
+                {
+                    System.out.println("DOWN!\n\n");
+                }
+                if (event.getKeyCode() == KeyEvent.VK_LEFT) 
+                {
+                    System.out.println("LEFT!\n\n");
+                    mapView[1][1].setIcon(new ImageIcon(Map.hero));
+                    mapView[1][2].setIcon(new ImageIcon(Map.floorEmpty));
+                }
+                if (event.getKeyCode() == KeyEvent.VK_RIGHT) 
+                {
+                    System.out.println("RIGHT!\n\n");
+                    mapView[1][2].setIcon(new ImageIcon(Map.hero));
+                    mapView[1][1].setIcon(new ImageIcon(Map.floorEmpty));
+                    
+                }
+    }
+
+    //@Override
+    //public void keyReleased(KeyEvent ke) {
+      //  throw new UnsupportedOperationException("Not supported yet.");
+    //}
+
+    @Override
+    public void keyTyped(KeyEvent ke) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void keyReleased(KeyEvent ke) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+
+    
+
+
 }
