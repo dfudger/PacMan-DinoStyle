@@ -18,7 +18,8 @@ public class Window extends JFrame implements Actionlistener
     
     
     static JLabel mapView[][] = new JLabel[10][10];
-    
+    public static final int width = 6;
+    public static final int height = 8;
     
     public Window()
     {
@@ -27,7 +28,7 @@ public class Window extends JFrame implements Actionlistener
         JFrame box = new JFrame();
         FlowLayout layout = new FlowLayout();
         JLabel floorLabel = new JLabel();
-        box.setSize(850, 650);
+        box.setSize((height * 100), (width*100));
         //box.setBounds(850, 850, 650, 650); // Size
         box.setResizable(false);
         box.setDefaultCloseOperation(EXIT_ON_CLOSE); //Use X to close
@@ -49,12 +50,12 @@ public class Window extends JFrame implements Actionlistener
         //Dimension d1 = new Dimension(850, 650);
         //gamepanel.setPreferredSize(d1);
         
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < width; i++)
         {
-            for(int j = 0; j < 8; j++)
+            for(int j = 0; j < height; j++)
             {
                 mapView[i][j] = new JLabel();
-                if(i == 0 || i == 5  )
+                if(i == 0 || i == width-1 || j == 0 || j == height-1 )
                 {
                     
                     mapView[i][j].setIcon(new ImageIcon(Map.wall)); 
