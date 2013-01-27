@@ -25,7 +25,7 @@ public class Window extends JFrame implements Actionlistener
         JPanel gamepanel = new JPanel();
         JFrame box = new JFrame();
         JLabel floorLabel = new JLabel();
-        box.setSize(800, 600);
+        box.setSize(900, 900);
         box.setDefaultCloseOperation(EXIT_ON_CLOSE); //Use X to close
         
         
@@ -33,7 +33,7 @@ public class Window extends JFrame implements Actionlistener
 
         gamepanel.setLayout(new GridLayout(6, 8));
         
-        Dimension d1 = new Dimension(800, 600);
+        Dimension d1 = new Dimension(900, 900);
         gamepanel.setPreferredSize(d1);
         
         for(int i = 0; i < 6; i++)
@@ -41,11 +41,13 @@ public class Window extends JFrame implements Actionlistener
             for(int j = 0; j < 8; j++)
             {
                 mapView[i][j] = new JLabel();
-                if(i == 0)
+                if(i == 0 || i == 5  )
                 {
+                    
                     mapView[i][j].setIcon(new ImageIcon(Map.wall)); 
                     System.out.println("map[" + i + "][" + j + "] = " + Map.wall);
                 }
+                
                 else
                 {
                     mapView[i][j].setIcon(new ImageIcon(Map.floorFull));
