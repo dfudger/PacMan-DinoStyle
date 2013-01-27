@@ -26,8 +26,14 @@ public class Map
     public static String hero = "images/hero.jpg";
     public static String badGuy = "images/badGuy.jpg";
     
-  
-    private static final String[] maze
+    public static final String[] gameMap = {"WWWWWWWW", 
+                                            "WFFFFFFW", 
+                                            "WFFFFFFW", 
+                                            "WFFFFFFW", 
+                                            "WFFFFFFW", 
+                                            "WFFFFFFW", 
+                                            };
+    /*private static final String[] maze
             = {"WWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
                "WFFFFFFFFFFFFFWFFFFFFFFFFFFFW",
                "WFFFFFFFFFFFFFWFFFFFFFFFFFFFW",
@@ -61,7 +67,7 @@ public class Map
                "WFFFFFFFFFFFFFWFFFFFFFFFFFFFW",
                "WFFFFFFFFFFFFFWFFFFFFFFFFFFFW",
                "WWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
-            };
+            };*/
     
     public Map() 
     {
@@ -74,11 +80,5 @@ public class Map
         }*/
     }
     
-    private void getImage() {}
     
-    private void setImage() {}
-    
-    private void countEnergy() {}
-    
-    private void updateScreen() {}
 }

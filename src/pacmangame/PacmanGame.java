@@ -19,20 +19,18 @@ package pacmangame;
  */
 public class PacmanGame 
 {
+   // public static Window gui;
     
-    public PacmanGame() {}
-    
-    private void createGame()
+    public PacmanGame() 
     {
-        Map layout = new Map();
+   //     Map layout = new Map();
         
-        Hero dino = new Hero();
+   //     Hero dino = new Hero();
         
-        
-        Window gui = new Window();
-        gui.setVisible(true);
         
     }
+    
+    
     
     private void startGame(){}
     
@@ -49,6 +47,7 @@ public class PacmanGame
      */
     public static void main(String[] args) {
         
+        //PacmanGame game = new PacmanGame();
         Window gui = new Window();
         gui.setVisible(true);
         

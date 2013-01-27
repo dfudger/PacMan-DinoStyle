@@ -26,6 +26,26 @@ public class Hero extends Character
         setLocation(1, 1);
     }
     
-    private void changePosition() {}
+    public void changePosition(int h, int v) 
+    {
+        int posH, posV;
+        
+        posH = getHLocation();
+        posV = getVLocation();
+        
+        System.out.println("Original:\t map[" + posH + "][" + posV + "]\n");
+        System.out.println("Original:\t newPosition[" + v + "][" + v + "]\n");
+        
+        setLocation(posH+h, posV+v);
+        
+        Window.gameMap[posH + h][posV + v] = 5;
+        Window.gameMap[posH][posV] = 3;
+        System.out.println("Position Changed!\n");
+        
+        posH = getHLocation();
+        posV = getVLocation();
+        
+        System.out.println("New Spot:\t map[" + posH + "][" + posV + "]\n");
+    }
     
 }
