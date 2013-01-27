@@ -45,6 +45,8 @@ public class Hero extends Character
         posH = getHLocation();
         posV = getVLocation();
         
+        int foo;
+        
         System.out.println("New Spot:\t map[" + posH + "][" + posV + "]\n");
     }
     
