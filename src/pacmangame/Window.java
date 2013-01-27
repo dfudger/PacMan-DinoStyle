@@ -21,6 +21,34 @@ public class Window extends JFrame implements Actionlistener
     public static final int width = 6;
     public static final int height = 8;
     
+    private void addWalls(Container content)
+    {
+        for(int i = 0; i < width; i++)
+        {
+            for(int j = 0; j < height; j++)
+            {
+                mapView[i][j] = new JLabel();
+                if(i == 0 || i == width-1 || j == 0 || j == height-1 )
+                {
+                    
+                    mapView[i][j].setIcon(new ImageIcon(Map.wall)); 
+                    System.out.println("map[" + i + "][" + j + "] = " + Map.wall);
+                }
+                
+                else
+                {
+                    mapView[i][j].setIcon(new ImageIcon(Map.floorFull));
+                    System.out.println("map[" + i + "][" + j + "] = " + Map.floorFull);
+                }
+                
+                content.add(mapView[i][j]);
+                //layout.add(mapView[i][j]);
+                //gamepanel.add(mapView[i][j]);
+            }
+        }
+        
+    }
+    
     public Window()
     {
         //Box to hold GUI
@@ -50,29 +78,8 @@ public class Window extends JFrame implements Actionlistener
         //Dimension d1 = new Dimension(850, 650);
         //gamepanel.setPreferredSize(d1);
         
-        for(int i = 0; i < width; i++)
-        {
-            for(int j = 0; j < height; j++)
-            {
-                mapView[i][j] = new JLabel();
-                if(i == 0 || i == width-1 || j == 0 || j == height-1 )
-                {
-                    
-                    mapView[i][j].setIcon(new ImageIcon(Map.wall)); 
-                    System.out.println("map[" + i + "][" + j + "] = " + Map.wall);
-                }
-                
-                else
-                {
-                    mapView[i][j].setIcon(new ImageIcon(Map.floorFull));
-                    System.out.println("map[" + i + "][" + j + "] = " + Map.floorFull);
-                }
-                
-                content.add(mapView[i][j]);
-                //layout.add(mapView[i][j]);
-                //gamepanel.add(mapView[i][j]);
-            }
-        }
+        //Add Walls
+        addWalls(content);
         
         
         //box.add(gamepanel);
