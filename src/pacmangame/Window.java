@@ -7,6 +7,7 @@ package pacmangame;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Vector;
 import javax.swing.*;
 
 
@@ -31,6 +32,8 @@ public class Window extends JFrame implements KeyListener
     public static final int width = 31;
     public static final int height = 29;
     
+    public Vector v;
+    
     /***Map Arrays***/
     public static int[][] gameMap = 
     {
@@ -49,7 +52,7 @@ public class Window extends JFrame implements KeyListener
         {0,0,0,0,0,0,2,2,0,2,2,2,2,2,2,2,2,2,2,2,0,2,2,0,0,0,0,0,0},
         {0,0,0,0,0,0,2,2,0,2,2,2,2,2,2,2,2,2,2,2,0,2,2,0,0,0,0,0,0},
         {0,0,0,0,0,0,2,2,0,2,2,3,3,3,3,3,3,3,2,2,0,2,2,0,0,0,0,0,0},
-        {0,0,0,0,0,0,2,2,2,2,2,3,3,3,3,3,3,3,2,2,2,2,2,0,0,0,0,0,0},
+        {0,0,0,0,0,0,2,2,2,2,2,3,3,3,4,3,3,3,2,2,2,2,2,0,0,0,0,0,0},
         {0,0,0,0,0,0,2,2,2,2,2,3,3,3,3,3,3,3,2,2,2,2,2,0,0,0,0,0,0},
         {0,0,0,0,0,0,2,2,0,2,2,3,3,3,3,3,3,3,2,2,0,2,2,0,0,0,0,0,0},
         {0,0,0,0,0,0,2,2,0,2,2,2,2,2,2,2,2,2,2,2,0,2,2,0,0,0,0,0,0},
@@ -157,11 +160,11 @@ public class Window extends JFrame implements KeyListener
                 //s = gameMap[i];
                 c = gameMap[i][j];
                 
-                if(c == 0) {
+                if(c == 0)
                    // System.out.println("HEre");
                     mapView[i][j].setIcon(new ImageIcon(wall));
                     //System.out.println("There");
-                }
+                
                     
                 if(c == 2)
                     mapView[i][j].setIcon(new ImageIcon(floorFull));
@@ -176,6 +179,22 @@ public class Window extends JFrame implements KeyListener
             }
         }
     }
+    
+    
+    private void moveCharacters(int x, int y)
+    {
+        BadGuy b;
+        dino.changePosition(x, y);
+        
+        for(int i = 0; i < v.size(); i++)
+        {
+            b = (BadGuy) v.get(i);
+            b.changeDirection();
+        }
+        drawMap();
+    
+    }
+    
     
     
     private boolean checkForWin() 
@@ -229,6 +248,11 @@ public class Window extends JFrame implements KeyListener
         content.setLayout(layout);
         
         dino = new Hero();
+        
+        v = new Vector();
+        v.addElement(new BadGuy(14, 14));
+        v.addElement(new BadGuy(10, 21));
+        
         //meteor = new BadGuy();
         
         createMap();
@@ -242,31 +266,34 @@ public class Window extends JFrame implements KeyListener
     public void keyPressed(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.VK_UP) 
         {
-            dino.changePosition(-1, 0);
-            //meteor.chooseDirection();
-            drawMap();
+            //dino.changePosition(-1, 0);
+            //meteor.changeDirection();
+            //drawMap();
+            moveCharacters(-1, 0);
         }
         
         if (event.getKeyCode() == KeyEvent.VK_DOWN) 
         {
-            dino.changePosition(1, 0);
-            //meteor.chooseDirection();
-            drawMap();
+            //dino.changePosition(1, 0);
+            //meteor.changeDirection();
+            //drawMap();
+            moveCharacters(1, 0);
         }
         
         if (event.getKeyCode() == KeyEvent.VK_LEFT) 
         {
-            dino.changePosition(0, -1);
-            //meteor.chooseDirection();
-            drawMap();
-            
+            //dino.changePosition(0, -1);
+            //meteor.changeDirection();
+            //drawMap();
+            moveCharacters(0, -1);
         }
         
         if (event.getKeyCode() == KeyEvent.VK_RIGHT) 
         {
-            dino.changePosition(0, 1);
-            //meteor.chooseDirection();
-            drawMap();
+            moveCharacters(0, 1);
+            //dino.changePosition(0, 1);
+            //meteor.changeDirection();
+            //drawMap();
             
         }
     }

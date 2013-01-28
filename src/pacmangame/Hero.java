@@ -59,6 +59,8 @@ public class Hero extends Character
             Window.setMapPosition(posH + h, posV + v, 5);
             Window.setMapPosition(posH, posV, 3);
         }
+        
+        
             
         //setLocation(posH+h, posV+v);        
         //Window.setMapPosition(posH + h, posV + v, 5);

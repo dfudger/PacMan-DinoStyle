@@ -21,11 +21,11 @@ import java.util.Random;
  */
 public class BadGuy extends Character 
 {
-    public BadGuy() 
+    public BadGuy(int x, int y) 
     {
         super();
         setImage("images/badGuy.jpg");
-        setLocation(2, 2);
+        setLocation(x, y);
     }
     
     private int randDirection()
@@ -36,149 +36,62 @@ public class BadGuy extends Character
         return n;
     }
     
-    public void chooseDirection() 
+    public void changeDirection() 
     {
-       
+        int x= 0, y= 0, d= 0, posX, posY;
+        boolean wall = true;
         
+        //Get current position on the board
+        posX = this.getHLocation();
+        posY = this.getVLocation();
+        //System.out.println("Current position: " + posX + " " + posY);
         
-       //System.out.println("ping");
-       /* int posH, posV, d;
-        int x = 0, y= 0;
-        boolean wall = false, hero = false;
-        
-        posH = this.getHLocation();
-        posV = this.getVLocation();
-        
-        System.out.println("Coordinates: " + posH + posV);
-        
-        //Pick a random direction. 
-        d = randDirection();
-        
-        
-        if(d == 0) //North
-        {
-            x = 0;
-            y = -1;
-        }
-        
-        if(d == 1) //East
-        {
-            x = 1;
-            y = 0;
-        }
-        
-        if(d == 2) //South
-        {
-            x = 0;
-            y = 1;
-        }
-        
-        if(d == 3) //West
-        {
-            x = -1;
-            y = 0;
-        }
-        
-        System.out.println("x & Y: " + x + y);
-        System.out.println("Combines: " + (posH+x) + (posV+y));
-        
-        //Check if moving will force you to hit a wall.
-        wall = Collision.hitWall(posH+x, posV+y);
-        System.out.println("Wall: " + wall);
-        while(wall == true)
+        while(wall)
         {
             d = randDirection();
+        
             if(d == 0) //North
             {
+                //System.out.println("North!");
                 x = 0;
                 y = -1;
+                wall = Collision.hitWall(posX+x, posY+y);
             }
 
             if(d == 1) //East
             {
+                //System.out.println("East!");
                 x = 1;
                 y = 0;
+                wall = Collision.hitWall(posX+x, posY+y);
             }
 
             if(d == 2) //South
             {
+                //System.out.println("South!");
                 x = 0;
                 y = 1;
+                wall = Collision.hitWall(posX+x, posY+y);
             }
 
             if(d == 3) //West
             {
+                //System.out.println("West!");
                 x = -1;
                 y = 0;
+                wall = Collision.hitWall(posX+x, posY+y);
             }
-            
-            wall = Collision.hitWall(posH+x, posV+y);
-            System.out.println("x & Y: " + x + y);
-            System.out.println("Combines: " + (posH+x) + (posV+y));
-            System.out.println("Wall: " + wall);
-        
-        */
         }
-        
-        if(wall == false && hero == false)
-        {
-            this.setLocation(posH+x, posV+y);
-            
-            if(Window.getEnergy(posH, posV) == 1)
-            {
-                System.out.println("Energy!");
-                //Window.setMapPosition(posH, posV, 2);
-            }
-            else
-            {
-                System.out.println("No Energy");
-                //Window.setMapPosition(posH, posV, 3);
-            }
-            Window.setMapPosition(posH, posV, 3);
-            //if(h > 0)
-              //  setImage(Window.hero);
-            //else
-              //  setImage(Window.hero);
-            
-            this.setLocation(posH+x, posV+y);
-            Window.setMapPosition(posH + x, posV + y, 4);   
-            
-            posH = this.getHLocation();
-            posV = this.getVLocation();
-            System.out.println("New Spot:\t map[" + posH + "][" + posV + "]\n");
-            
-        }
+
+        //If the position rock on has energy, then set the number to 1
+        if(Window.getEnergy(posX, posY) == 1)
+            Window.setMapPosition(posX, posY, 2);
+        else
+            Window.setMapPosition(posX, posY, 3);
         
         
-        //Check if moving will force you to hit a wall.
-        //wall = Collision.hitWall(posH+h, posV+v);
-        //enemy = Collision.hitWall(posH+h, posV+v);
-        
-        //System.out.println("Original:\t map[" + posH + "][" + posV + "]\n");
-        //System.out.println("Original:\t newPosition[" + v + "][" + v + "]\n");
-        //if (wall == true)
-        //{
-        //    return;
-        //}
-        
-        //if(wall == false && enemy == false)
-        //{
-        //    setLocation(posH+h, posV+v);
-        //    Window.setMapPosition(posH + h, posV + v, 5);
-        //    Window.setMapPosition(posH, posV, 3);
-        //}
-            
-        //setLocation(posH+h, posV+v);        
-        //Window.setMapPosition(posH + h, posV + v, 5);
-        
-        //Window.gameMap[posH + h][posV + v] = 5;
-        //Window.gameMap[posH][posV] = 3;
-        //System.out.println("Position Changed!\n");
-        
-        //posH = getHLocation();
-        //posV = getVLocation();
-        //System.out.println("New Spot:\t map[" + posH + "][" + posV + "]\n");
-        
-    }
-    
+        Window.setMapPosition((posX+x), (posY+y), 4);
+        this.setLocation((posX+x), (posY+y));
+          
+    }  
 }
