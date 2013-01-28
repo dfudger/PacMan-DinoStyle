@@ -86,6 +86,7 @@ public class BadGuy extends Character
         if(Collision.hitHero(posX+x, posY+y))
         {
             System.out.println("You died!!\n");
+            Window.gameLost();
         }
         
         //If the position rock on has energy, then set the number to 1

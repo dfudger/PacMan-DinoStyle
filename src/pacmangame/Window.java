@@ -22,6 +22,9 @@ public class Window extends JFrame implements KeyListener
     public BadGuy meteor;
     public Container content;
     
+    public JFrame box, win;
+    public static JFrame lose; 
+    
     /***Image Strings***/
     public static String wall = "images/wall.jpg";
     public static String floorFull = "images/floorFull.jpg";
@@ -112,6 +115,41 @@ public class Window extends JFrame implements KeyListener
     static JLabel mapView[][] = new JLabel[width][height];
     
     
+    public void gameWon()
+    {
+        win = new JFrame();
+        win.setSize((height * 25), (width*25));
+        win.setResizable(false);
+        win.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+        JLabel wonImage = new JLabel();
+        wonImage.setIcon(new ImageIcon("images/youWon.jpg"));
+        
+        win.add(wonImage);
+        
+        win.setVisible(true);
+        //lose.setVisible(false);
+        //box.setVisible(false);
+        
+    }
+    
+    public static void gameLost()
+    {
+        lose = new JFrame();
+        lose.setSize((height * 25), (width*25));
+        lose.setResizable(false);
+        lose.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+        JLabel lostImage = new JLabel();
+        lostImage.setIcon(new ImageIcon("images/youLost.jpg"));
+        
+        lose.add(lostImage);
+        
+        //win.setVisible(true);
+        lose.setVisible(true);
+        //box.setVisible(false);
+        
+    }
     
     public static void setMapPosition(int x, int y, int c)
     {
@@ -144,17 +182,10 @@ public class Window extends JFrame implements KeyListener
             for(int j = 0; j < height; j++)
             {
                 mapView[i][j] = new JLabel();
-                //System.out.println("GAA: " + i + j);
-                //System.out.println("Game Map: " + gameMap[i].charAt(j));
-                //s = gameMap[i];
                 c = gameMap[i][j];
                 
                 if(c == 0)
-                   // System.out.println("HEre");
                     mapView[i][j].setIcon(new ImageIcon(wall));
-                    //System.out.println("There");
-                
-                    
                 if(c == 2)
                     mapView[i][j].setIcon(new ImageIcon(floorFull));
                 if(c == 3)
@@ -177,7 +208,8 @@ public class Window extends JFrame implements KeyListener
         
         for(int i = 0; i < v.size(); i++)
         {
-            b = (BadGuy) v.get(i);
+            System.out.println("i: " + i);
+            b = (BadGuy) v.get(i); 
             b.changeDirection();
         }
         
@@ -190,7 +222,7 @@ public class Window extends JFrame implements KeyListener
     
     private void checkForWin() 
     {
-        boolean win = false;
+        boolean winner = false;
         
         for(int i = 0; i < width; i++)
         {
@@ -203,13 +235,16 @@ public class Window extends JFrame implements KeyListener
                 }
                 else
                 {
-                    win = true;
+                    winner = true;
                 }
             }
         }
         
-        if(win)
+        if(winner)
+        {
             System.out.println("\nYou Win!\n");
+            gameWon();
+        }
     }
     
     private void drawMap() 
@@ -242,10 +277,12 @@ public class Window extends JFrame implements KeyListener
     public Window()
     {
 
-        JFrame box = new JFrame();
+        box = new JFrame();
         FlowLayout layout = new FlowLayout();
         
         box.setSize((height * 25), (width*25));
+        System.out.println(height * 25 + "::\n");
+        System.out.println(width * 25);
         box.setResizable(false);
         box.setDefaultCloseOperation(EXIT_ON_CLOSE);
         
@@ -265,7 +302,10 @@ public class Window extends JFrame implements KeyListener
         
         box.addKeyListener(this); //Accepts input from the arrow keys
        
+        //win.setVisible(false);
+        //lose.setVisible(false);
         box.setVisible(true);
+        
     }
 
     @Override
