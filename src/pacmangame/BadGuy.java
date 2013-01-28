@@ -83,6 +83,11 @@ public class BadGuy extends Character
             }
         }
 
+        if(Collision.hitHero(posX+x, posY+y))
+        {
+            System.out.println("You died!!\n");
+        }
+        
         //If the position rock on has energy, then set the number to 1
         if(Window.getEnergy(posX, posY) == 1)
             Window.setMapPosition(posX, posY, 2);
@@ -94,4 +99,7 @@ public class BadGuy extends Character
         this.setLocation((posX+x), (posY+y));
           
     }  
+
+
+
 }

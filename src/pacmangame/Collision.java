@@ -21,7 +21,7 @@ public class Collision {
     
     public static boolean hitWall(int x, int y)
     {
-        if(Window.gameMap[x][y] == 0)
+        if(Window.getMapItem(x, y) == 0)
             return true;
         else 
             return false;
@@ -29,7 +29,7 @@ public class Collision {
     
     public static boolean hitEnemy(int x, int y)
     {
-        if(Window.gameMap[x][y] == 4)
+        if(Window.getMapItem(x, y) == 4)
                 return true;
             else 
                 return false;    
@@ -37,7 +37,7 @@ public class Collision {
     
     public static boolean hitHero(int x, int y)
     {
-        if(Window.gameMap[x][y] == 5)
+        if(Window.getMapItem(x, y) == 5)
                 return true;
             else 
                 return false;    

@@ -22,7 +22,7 @@ public class Hero extends Character
     public Hero() 
     {
         super();
-        setImage("images/hero.jpg");
+        setImage("images/heroR.jpg");
         setLocation(2, 2);
     }
     
@@ -49,10 +49,10 @@ public class Hero extends Character
             if(Window.getEnergy(posH+h, posV+v) == 1) 
                 Window.setEnergy(posH+h, posV + v, 0);
             
-            if(h > 0)
-                this.setImage(Window.hero);
+            if(v < 0)
+                this.setImage(Window.heroL);
             else
-                this.setImage(Window.hero);
+                this.setImage(Window.heroR);
             
             setLocation(posH+h, posV+v);
             

@@ -26,7 +26,8 @@ public class Window extends JFrame implements KeyListener
     public static String wall = "images/wall.jpg";
     public static String floorFull = "images/floorFull.jpg";
     public static String floorEmpty = "images/floorEmpty.jpg";
-    public static String hero = "images/hero.jpg";
+    public static String heroR = "images/heroR.jpg";
+    public static String heroL = "images/heroL.jpg";
     public static String badGuy = "images/badGuy.jpg";
     public static final int width = 31;
     public static final int height = 29;
@@ -161,7 +162,7 @@ public class Window extends JFrame implements KeyListener
                 if(c == 4)
                     mapView[i][j].setIcon(new ImageIcon(badGuy));
                 if(c == 5)
-                    mapView[i][j].setIcon(new ImageIcon(hero));
+                    mapView[i][j].setIcon(new ImageIcon(heroR));
                 
                 content.add(mapView[i][j]);
             }
