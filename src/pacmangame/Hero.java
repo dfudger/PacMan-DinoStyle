@@ -46,7 +46,7 @@ public class Hero extends Character
         if(wall == false && enemy == false)
         {
             
-            if(Window.getEnergy(posH+h, posV+v) == 1)
+            if(Window.getEnergy(posH+h, posV+v) == 1) 
                 Window.setEnergy(posH+h, posV + v, 0);
             
             if(h > 0)
