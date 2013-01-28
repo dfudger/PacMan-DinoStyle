@@ -16,40 +16,130 @@ import javax.swing.*;
  */
 public class Window extends JFrame implements KeyListener
 {
+    /***Objects***/
     public Hero dino;
+    public BadGuy meteor;
     public Container content;
+    
+    /***Image Strings***/
     public static String wall = "images/wall.jpg";
     public static String floorFull = "images/floorFull.jpg";
     public static String floorEmpty = "images/floorEmpty.jpg";
     public static String hero = "images/hero.jpg";
     public static String badGuy = "images/badGuy.jpg";
+    //http://www.colourbox.com/preview/5198322-126144-triceratops-cartoon.jpg
+    public static final int width = 31;
+    public static final int height = 29;
     
-    public static int[][] gameMap = {
-            {0, 0, 0, 0, 0, 0, 0, 0},
-            {0, 5, 2, 2, 2, 2, 2, 0},
-            {0, 2, 0, 0, 0, 2, 2, 0},        
-            {0, 2, 2, 2, 2, 2, 2, 0},
-            {0, 2, 2, 2, 2, 2, 2, 0},
-            {0, 0, 0, 0, 0, 0, 0, 0}
-                    
-    /*
-    {"WWWWWWWW", 
-                                            "WHFFFFFW", 
-                                            "WFWWWFFW", 
-                                            "WFFFFFFW", 
-                                            "WFFFFFFW", 
-                                            "WWWWWWWW", */
-                                            };
-    
-    static JLabel mapView[][] = new JLabel[10][10];
-    
-    public static final int width = 6;
-    public static final int height = 8;
-    
-    
-    public void setMapPosition(int h, int v, int c)
+    /***Map Arrays***/
+    public static int[][] gameMap = 
     {
-        gameMap[h][v] = c;
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,0},
+        {0,2,5,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,0},
+        {0,2,2,0,0,0,2,2,0,0,0,0,2,2,0,2,2,0,0,0,0,2,2,0,0,0,2,2,0},
+        {0,2,2,0,0,0,2,2,0,0,0,0,2,2,0,2,2,0,0,0,0,2,2,0,0,0,2,2,0},
+        {0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0},
+        {0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0},
+        {0,2,2,0,0,0,2,2,0,2,2,0,0,0,0,0,0,0,2,2,0,2,2,0,0,0,2,2,0},
+        {0,2,2,2,2,2,2,2,0,2,2,2,2,2,0,2,2,2,2,2,0,2,2,2,2,2,2,2,0},
+        {0,2,2,2,2,2,2,2,0,2,2,2,2,2,0,2,2,2,2,2,0,2,2,2,2,2,2,2,0},
+                    
+        {0,0,0,0,0,0,2,2,0,0,0,0,2,2,0,2,2,0,0,0,0,2,2,0,0,0,0,0,0},
+        {0,0,0,0,0,0,2,2,0,2,2,2,2,2,2,2,2,2,2,2,0,2,2,0,0,0,0,0,0},
+        {0,0,0,0,0,0,2,2,0,2,2,2,2,2,2,2,2,2,2,2,0,2,2,0,0,0,0,0,0},
+        {0,0,0,0,0,0,2,2,0,2,2,3,3,3,3,3,3,3,2,2,0,2,2,0,0,0,0,0,0},
+        {0,0,0,0,0,0,2,2,2,2,2,3,3,3,3,3,3,3,2,2,2,2,2,0,0,0,0,0,0},
+        {0,0,0,0,0,0,2,2,2,2,2,3,3,3,3,3,3,3,2,2,2,2,2,0,0,0,0,0,0},
+        {0,0,0,0,0,0,2,2,0,2,2,3,3,3,3,3,3,3,2,2,0,2,2,0,0,0,0,0,0},
+        {0,0,0,0,0,0,2,2,0,2,2,2,2,2,2,2,2,2,2,2,0,2,2,0,0,0,0,0,0},
+        {0,0,0,0,0,0,2,2,0,2,2,2,2,2,2,2,2,2,2,2,0,2,2,0,0,0,0,0,0},
+               
+        {0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0},
+        {0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0},
+        {0,2,2,0,0,0,2,2,0,0,0,0,2,2,0,2,2,0,0,0,0,2,2,0,0,0,2,2,0},
+        {0,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,0},
+        {0,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,0},
+        {0,0,0,2,2,0,2,2,0,2,2,0,0,0,0,0,0,0,2,2,0,2,2,0,2,2,0,0,0},
+        {0,2,2,2,2,2,2,2,0,2,2,2,2,2,0,2,2,2,2,2,0,2,2,2,2,2,2,2,0},
+        {0,2,2,2,2,2,2,2,0,2,2,2,2,2,0,2,2,2,2,2,0,2,2,2,2,2,2,2,0},
+        {0,2,2,0,0,0,0,0,0,0,0,0,2,2,0,2,2,0,0,0,0,0,0,0,0,0,2,2,0},
+        {0,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,0},
+        {0,2,2,2,2,2,2,2,2,2,2,2,2,2,0,2,2,2,2,2,2,2,2,2,2,2,2,2,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+    };
+
+    /*{
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 5, 2, 2, 2, 2, 2, 0},
+        {0, 2, 0, 0, 0, 2, 2, 0},        
+        {0, 2, 2, 2, 2, 2, 2, 0},
+        {0, 2, 2, 2, 2, 2, 2, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0}
+    };*/  
+    
+            
+    
+    public static int[][] energyStatus = 
+    {
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+               {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+               {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+               {0,1,1,0,0,0,1,1,0,0,0,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,1,1,0},
+               {0,1,1,0,0,0,1,1,0,0,0,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,1,1,0},
+               {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+               {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+               {0,1,1,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,1,1,0},
+               {0,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0},
+               {0,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0},
+                    
+               {0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0},
+               {0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0},
+               {0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0},
+               {0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0},
+               {0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0},
+               {0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0},
+               {0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0},
+               {0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0},
+               {0,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,0},
+               
+               {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+               {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+               {0,1,1,0,0,0,1,1,0,0,0,0,1,1,0,1,1,0,0,0,0,1,1,0,0,0,1,1,0},
+               {0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0},
+               {0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,0},
+               {0,0,0,1,1,0,1,1,0,1,1,0,0,0,0,0,0,0,1,1,0,1,1,0,1,1,0,0,0},
+               {0,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0},
+               {0,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0},
+               {0,1,1,0,0,0,0,0,0,0,0,0,1,1,0,1,1,0,0,0,0,0,0,0,0,0,1,1,0},
+               {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+               {0,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,0},
+               {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+    };   
+    
+    static JLabel mapView[][] = new JLabel[width][height];
+    
+    
+    
+    public static void setMapPosition(int x, int y, int c)
+    {
+        gameMap[x][y] = c;
+    }
+    
+    public static int getMapItem(int x, int y)
+    { 
+        return gameMap[x][y];
+    }
+    
+    
+    public static void setEnergy(int x, int y, int v)
+    {
+        energyStatus[x][y] = v;
+    }
+    
+    public static int getEnergy(int x, int y)
+    {   
+        return energyStatus[x][y];
     }
     
     private void createMap()
@@ -88,7 +178,10 @@ public class Window extends JFrame implements KeyListener
     }
     
     
-    private void countEnergy() {}
+    private boolean checkForWin() 
+    {
+        return false;
+    }
     
     private void drawMap() 
     {
@@ -100,12 +193,8 @@ public class Window extends JFrame implements KeyListener
             {     
                 c = gameMap[i][j];
                 
-                if(c == 0) {
-                   // System.out.println("HEre");
+                if(c == 0)
                     mapView[i][j].setIcon(new ImageIcon(wall));
-                    //System.out.println("There");
-                }
-                    
                 if(c == 2)
                     mapView[i][j].setIcon(new ImageIcon(floorFull));
                 if(c == 3)
@@ -113,12 +202,11 @@ public class Window extends JFrame implements KeyListener
                 if(c == 4)
                     mapView[i][j].setIcon(new ImageIcon(badGuy));
                 if(c == 5)
-                    mapView[i][j].setIcon(new ImageIcon(hero));
+                    mapView[i][j].setIcon(new ImageIcon(dino.getImage()));
                 
                 content.add(mapView[i][j]);
             }
         }
-        //content.repaint();
     }
     
     
@@ -129,7 +217,7 @@ public class Window extends JFrame implements KeyListener
         FlowLayout layout = new FlowLayout();
         JLabel floorLabel = new JLabel();
         
-        box.setSize((height * 100), (width*100));
+        box.setSize((height * 25), (width*25));
 
         box.setResizable(false);
         box.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -141,11 +229,11 @@ public class Window extends JFrame implements KeyListener
         content.setLayout(layout);
         
         dino = new Hero();
+        //meteor = new BadGuy();
         
         createMap();
         
-        
-        box.addKeyListener(this);
+        box.addKeyListener(this); //Accepts input from the arrow keys
        
         box.setVisible(true);
     }
@@ -154,35 +242,32 @@ public class Window extends JFrame implements KeyListener
     public void keyPressed(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.VK_UP) 
         {
-            System.out.println("UP!\n\n");
             dino.changePosition(-1, 0);
+            //meteor.chooseDirection();
             drawMap();
         }
         
         if (event.getKeyCode() == KeyEvent.VK_DOWN) 
         {
-            System.out.println("DOWN!\n\n");
             dino.changePosition(1, 0);
+            //meteor.chooseDirection();
             drawMap();
         }
         
         if (event.getKeyCode() == KeyEvent.VK_LEFT) 
         {
-            System.out.println("LEFT!\n\n");
             dino.changePosition(0, -1);
+            //meteor.chooseDirection();
             drawMap();
-            //mapView[1][1].setIcon(new ImageIcon(Map.hero));
-            //mapView[1][2].setIcon(new ImageIcon(Map.floorEmpty));
+            
         }
         
         if (event.getKeyCode() == KeyEvent.VK_RIGHT) 
         {
-            System.out.println("RIGHT!\n\n");
             dino.changePosition(0, 1);
+            //meteor.chooseDirection();
             drawMap();
-            //mapView[1][2].setIcon(new ImageIcon(Map.hero));
-            //mapView[1][1].setIcon(new ImageIcon(Map.floorEmpty));
-
+            
         }
     }
 

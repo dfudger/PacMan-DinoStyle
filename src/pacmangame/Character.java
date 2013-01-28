@@ -19,7 +19,7 @@ package pacmangame;
  */
 public class Character 
 {
-    public String actorImage = "";
+    public static String actorImage = "";
     public int actorHposition = 1;
     public int actorVposition = 1;
     
@@ -28,6 +28,11 @@ public class Character
     public void setImage(String s) 
     {
         this.actorImage = s;
+    }
+    
+    public String getImage() 
+    {
+        return Character.actorImage;
     }
     
     public int getHLocation() 
