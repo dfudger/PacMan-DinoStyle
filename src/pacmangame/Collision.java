@@ -19,8 +19,27 @@ package pacmangame;
  */
 public class Collision {
     
-    private void hitWall(){}
+    public static boolean hitWall(int x, int y)
+    {
+        if(Window.gameMap[x][y] == 0)
+            return true;
+        else 
+            return false;
+    }
     
-    private void hitEnemy(){}
+    public static boolean hitEnemy(int x, int y)
+    {
+        if(Window.gameMap[x][y] == 4)
+                return true;
+            else 
+                return false;    
+    }
     
+    public static boolean hitHero(int x, int y)
+    {
+        if(Window.gameMap[x][y] == 5)
+                return true;
+            else 
+                return false;    
+    }
 }
