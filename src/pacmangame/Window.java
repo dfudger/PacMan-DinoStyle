@@ -22,7 +22,7 @@ public class Window extends JFrame implements KeyListener
     public BadGuy meteor;
     public Container content;
     
-    public JFrame box, win;
+    public static JFrame box, win;
     public static JFrame lose; 
     
     /***Image Strings***/
@@ -147,7 +147,8 @@ public class Window extends JFrame implements KeyListener
         
         //win.setVisible(true);
         lose.setVisible(true);
-        //box.setVisible(false);
+        
+        box.setVisible(false);
         
     }
     
