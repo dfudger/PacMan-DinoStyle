@@ -1,4 +1,4 @@
-<project name="CIS3760_Pacman" basedir="." default="run">
+<project name="CIS3760_PacMan" basedir="." default="run">
 
     <property name="src.dir"     value="src"/>
 
@@ -6,7 +6,7 @@
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="jar.dir"     value="${build.dir}/jar"/>
 
-    <property name="main-class"  value="pacmanGame.PacmanGame"/> 
+    <property name="main-class"  value="pacmangame.PacmanGame"/> 
 
 
 
