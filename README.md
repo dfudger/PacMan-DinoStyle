@@ -2,8 +2,7 @@ PacMan-DinoStyle
 ================
 
 Author: Danielle Fudger
-Contact: dfudger@uoguelph.ca
-Last Code Update: January 26, 2013
+
 
 
 Summary
